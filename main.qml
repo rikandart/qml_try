@@ -73,7 +73,6 @@ Window {
         }
         onTextChanged: {
             backend.hexNumber = text
-            console.log(tf_1.width)
         }
     }
 

@@ -40,7 +40,7 @@ QString BackEnd::getNumber(){
 
 // проверка на число
 quint8 BackEnd::verifyNumber(const QString &number, const short radix){
-    qDebug() << number;
+    //qDebug() << number;
     quint8 iNumber = 0;
     // quint8 сам отбрасывает старшие биты
     // а метод toUint возвращает isOK == false, если число отрицательное или введены случайные буквы
@@ -110,7 +110,7 @@ void BackEnd::setIndicator(const QString& number, const int i){
 }
 
 void BackEnd::openFile(const QString &filename){
-    qDebug() << filename;
+    //qDebug() << filename;
     //"file:///home/pizhun/Documents/file.txt"
     QString fn = filename.mid(7, filename.length());
     QFile file(fn);
@@ -130,7 +130,8 @@ void BackEnd::processLine(const QString &line){
     QStringList strList = line.split(' ');
     for(int i = 0; i < strList.length(); i++){
         unsigned int tmp = strList[i].toUInt(&isOK, 10);
-        if(isOK)
+        // quint8 сам отбрасывает старшие биты
+        if(isOK && tmp <= 100)
             m_number += tmp;
     }
 }
